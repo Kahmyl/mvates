@@ -9,3 +9,7 @@ export const getPolls = () => {
 export const authLogin = (data: loginData) => {
     return api.post('/login', data)
 }
+
+export const logout = (data: any) => {
+    return api.post('/logout', data)
+}
