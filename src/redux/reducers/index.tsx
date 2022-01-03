@@ -5,7 +5,7 @@ import auth from './auth'
 
 const rootReducer = combineReducers({
     error,
-    auth
+    auth,
 })
-
+export type RootState = ReturnType<typeof rootReducer>
 export default rootReducer;

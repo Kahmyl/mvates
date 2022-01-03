@@ -15,7 +15,7 @@ export const loginUser = (data: loginData) => {
             dispatch(setCurrentUser(user))
             dispatch(removeError())
         }catch(err: any){
-            const error = err.response.data
+            const error = err.response.data[0]
             dispatch(addError(error))
         }
     }

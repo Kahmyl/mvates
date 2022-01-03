@@ -1,8 +1,8 @@
 import { ADD_ERROR, REMOVE_ERROR } from '../actionTypes'
 
-export const addError = (error: any) => ({
+export const addError = (message: any) => ({
     type: ADD_ERROR,
-    error
+    message
 });
 
 export const removeError = () => ({
