@@ -10,7 +10,8 @@ import { loginUser } from "../redux/actions";
 import ErrorMessage from "../components/ErrorMessage";
 
 
-const Login = () => {
+const Register = () => {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -30,6 +31,10 @@ const Login = () => {
       <>
         <ErrorMessage/>
         <Form onSubmit={handleSubmit}>
+          <Label htmlFor="name" >Name</Label>
+          <Input type="text" value={name}
+           autoComplete ="off" 
+           onChange={(e: any) => setName(e.target.value) }/>
           <Label htmlFor="email" >Email</Label>
           <Input type="text" value={email}
            autoComplete ="off" 
@@ -38,10 +43,10 @@ const Login = () => {
           <Input type="password" value={password}
            autoComplete ="off"
            onChange={(e: any) => setPassword(e.target.value) }/>
-          <Button>Login</Button>
+          <Button>Register</Button>
         </Form>
       </>
   );
 }
 
-export default Login;
+export default Register;

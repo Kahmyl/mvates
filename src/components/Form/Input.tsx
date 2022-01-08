@@ -7,10 +7,18 @@ const StyledInput = styled.input`
 export type inputType = {
     type?: string;
     placeholder?: string;
-    value?: string;
+    value?: any;
     onChange?: any;
+    autoComplete?: string
+    checked?:boolean
 }
 
-export default function Input({ type, placeholder, value, onChange }: inputType) {
-  return <StyledInput type={type} placeholder={placeholder} value={value} onChange={onChange} />;
+export default function Input({ type, placeholder, value, onChange, autoComplete, checked }: inputType) {
+  return <StyledInput 
+          checked={checked} 
+          type={type} 
+          placeholder={placeholder} 
+          value={value} 
+          onChange={onChange} 
+          autoComplete={autoComplete} />;
 }

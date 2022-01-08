@@ -1,8 +1,15 @@
 import styled from "styled-components";
 
+export type labelType = {
+    htmlFor?: any
+    children: any
+}
 
-const Label = styled.label`
+
+const Styledlabel = styled.label`
  
 `;
 
-export default Label
+export default function Label({htmlFor, children}: labelType) {
+    return(<Styledlabel htmlFor={htmlFor}>{children}</Styledlabel>);
+}

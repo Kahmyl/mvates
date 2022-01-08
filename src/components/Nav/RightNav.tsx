@@ -1,8 +1,16 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/reducers";
+import { logoutUser } from "../../redux/actions";
+
 
 type openType = {
     open: boolean;
 }
+
+
+
 
 
 const Ul = styled.ul`
@@ -31,13 +39,23 @@ const Ul = styled.ul`
 `;
 
 const RightNav = ({ open }: openType) => {
+  const {isAuth} = useSelector((store: RootState) => ({isAuth: store.auth.isAuth}))
+  const {user} = useSelector((store: RootState) => ({user: store.auth.user.data}))
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+     dispatch(logoutUser())
+  }
+
   return (
     <Ul open={open}>
-      <li>Home</li>
-      <li>About Us</li>
-      <li>Contact Us</li>
-      <li>Sign In</li>
-      <li>Sign Up</li>
+      
+      <Link to="/"><li>Home</li></Link>
+      <Link to="/"><li>About Us</li></Link>
+      <Link to="/result"><li>Result</li></Link>
+      {!isAuth && <><Link to="/login"><li>Sign In</li></Link>
+      <Link to="/register"><li>Sign Up</li></Link></>}
+      {isAuth && <Link to="#" onClick={handleLogout}> <li>{user.name}(Logout)</li></Link>}
     </Ul>
   )
 }

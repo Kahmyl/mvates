@@ -21,10 +21,12 @@ export const loginUser = (data: loginData) => {
     }
 }
 
-export const logoutUser = (data: any) => {
+export const logoutUser = () => {
+    const user = {}
     return async (dispatch: Dispatch) => {
         try{
-            await logout(data)
+            await logout()
+            dispatch(setCurrentUser(user))
             dispatch(removeError())
         }catch(err: any){
             const error = err.response.data

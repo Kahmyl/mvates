@@ -1,3 +1,4 @@
+import Button from "../components/Form/Button";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import  { loadPolls } from "../redux/actions";
@@ -22,7 +23,7 @@ export type dataType = {
     updatedAT?: Date;
 }
 
-const Polls = () => {
+const Result = () => {
     const {data} = useSelector((store: RootState) => ({data: store.polls.data}))
     const dispatch = useDispatch();
 
@@ -31,20 +32,17 @@ const Polls = () => {
     useEffect(() => {
         dispatch(loadPolls())
     }, [dispatch])
-    return (
-          <div>
-              {data?.map((data: dataType) => (
-                <div key={data._id}>
-                  <Link to={`/vote/${data._id}`}>
-                    <h4>{data.title}</h4>
-                    <span>Posted by: {data.user.name}</span>
-                  </Link>
-                </div>
-              ))}
-          </div>
-
-    );
+    return(
+        <div>
+            {data?.map((data: dataType) => (
+              <div key={data._id}>
+                  <h4>{data.title}</h4>
+                  <span>Posted by: {data.user.name}</span>
+                  <Link to={`/charts/${data._id}`}><Button>Check Results</Button></Link>
+              </div>
+            ))}
+        </div>
+    )
 }
 
-export default Polls
-
+export default Result
