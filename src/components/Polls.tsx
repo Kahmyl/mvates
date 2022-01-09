@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import  { loadPolls } from "../redux/actions";
 import { RootState }  from "../redux/reducers";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export type optionType = {
     _id: any
@@ -22,6 +23,15 @@ export type dataType = {
     updatedAT?: Date;
 }
 
+const Li = styled.li`
+background-color: whitesmoke;
+color: black;
+padding: 0.5rem;
+text-align: center;
+list-style: none;
+text-decoration: none
+`
+
 const Polls = () => {
     const {data} = useSelector((store: RootState) => ({data: store.polls.data}))
     const dispatch = useDispatch();
@@ -34,12 +44,12 @@ const Polls = () => {
     return (
           <div>
               {data?.map((data: dataType) => (
-                <div key={data._id}>
+                <Li key={data._id}>
                   <Link to={`/vote/${data._id}`}>
                     <h4>{data.title}</h4>
                     <span>Posted by: {data.user.name}</span>
                   </Link>
-                </div>
+                </Li>
               ))}
           </div>
 

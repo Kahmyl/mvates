@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-  border radius: 2rem;
+width: 100%;
+padding: 0.5rem 1rem;
+margin: 0.5rem 0;
+border: 1px solid darkgrey;
+border-radius: 0.4rem;
+box-sizing: border-box;
+outline: none;
+font-size: 1rem;
 `;
 
 export type inputType = {

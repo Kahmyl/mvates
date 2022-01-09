@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
-import { SET_POLLS } from "../actionTypes";
+import { SET_POLLS, SET_CREATE_POLLS, SET_SINGLE_POLL } from "../actionTypes";
 import { addError, removeError } from "./error";
-import { getPolls, createPoll, votePoll } from "../../services/request";
+import { getPolls, createPoll, votePoll, singlePoll } from "../../services/request";
 import { pollData, voteData } from "../../services/types";
 
 export const setPolls = (polls: any) => ({
@@ -10,8 +10,13 @@ export const setPolls = (polls: any) => ({
 })
 
 export const setPostPolls = (postPolls: any) => ({
-    type: SET_POLLS,
+    type: SET_CREATE_POLLS,
     postPolls
+})
+
+export const setSinglePoll = (poll: any) => ({
+    type: SET_SINGLE_POLL,
+    poll
 })
 
 
@@ -33,6 +38,19 @@ export const storePolls = (data: pollData) => {
         try{
             const{...postPolls} = await createPoll(data)
             dispatch(setPostPolls(postPolls))
+            dispatch(removeError())
+        }catch(err: any){
+            const error = err.response.data
+            dispatch(addError(error))
+        }
+    }
+}
+
+export const findPoll = (data: any) => {
+    return async (dispatch: Dispatch) => {
+        try{
+            const{...poll} = await singlePoll(data)
+            dispatch(setSinglePoll(poll))
             dispatch(removeError())
         }catch(err: any){
             const error = err.response.data

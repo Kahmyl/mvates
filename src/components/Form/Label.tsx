@@ -7,7 +7,8 @@ export type labelType = {
 
 
 const Styledlabel = styled.label`
- 
+text-transform: uppercase;
+font-size: 0.8rem;
 `;
 
 export default function Label({htmlFor, children}: labelType) {

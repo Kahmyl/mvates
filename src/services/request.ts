@@ -6,6 +6,10 @@ export const getPolls = () => {
     return api.get('/polls')
 }
 
+export const singlePoll = (data: any) => {
+    return api.get('/poll', data)
+}
+
 export const authLogin = (data: loginData) => {
     return api.post('/login', data)
 }
